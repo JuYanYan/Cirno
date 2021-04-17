@@ -1,0 +1,47 @@
+# .gitignore
+*
+!*/
+.vs/
+.vscode/
+
+# 不忽略下面指定的文件类型
+
+# C/C++项目
+!Makefile
+!*.c
+!*.cpp
+!*.hpp
+!*.rc
+!*.h
+!*.gitignore
+!*.gitattributes
+!*.png
+!*.xlsx
+!*.def
+!*.md
+!*.hna
+!*.manifest
+!*.vcxproj
+!*.user
+!*.filters
+!*.asm
+!*.bat
+!*.hint
+!*.glsl
+!*.hlsl
+!*.vert
+!*.frag
+!*.cd
+!*.inc
+
+# c#项目
+!*.cs
+!*.xaml
+!*.sln
+!*.csproj
+!*.user
+!*.json
+!*.xml
+
+# 安装文件
+!*.iss

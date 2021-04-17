@@ -1,0 +1,12 @@
+*.sln binary
+*.user binary
+*.filters binary
+*.vcxproj binary
+*.hint text
+*.rc text
+*.lt text
+*.hna text
+*.dll binary
+*.lib binary
+*.pdb binary
+
