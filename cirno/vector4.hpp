@@ -201,13 +201,13 @@ namespace cirno
         // 按照下标取得值, [0] = x, [1] = y, [2] = z, [3] = w
         float32& operator[](unsigned int i) noexcept
         {
-            assert(i >= 0 && i < 4);
+            assert(i < 4);
             return buff[i];
         }
         // 按照下标取得值, [0] = x, [1] = y, [2] = z, [3] = w
         float32 operator[](unsigned int i) const noexcept
         {
-            assert(i >= 0 && i < 4);
+            assert(i < 4);
             return buff[i];
         }
         // 取得X值

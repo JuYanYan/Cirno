@@ -515,13 +515,13 @@ namespace cirno
         // 取得第几行的向量
         inline Vector4 &operator[](unsigned int i) noexcept
         {
-            assert(i >= 0 && i < 4);
+            assert(i < 4);
             return data[i];
         }
         // 取得第几行的向量
         inline const Vector4 &operator[](unsigned int i) const noexcept
         {
-            assert(i >= 0 && i < 4);
+            assert(i < 4);
             return data[i];
         }
         // 取得数据区内存

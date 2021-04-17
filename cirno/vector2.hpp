@@ -192,13 +192,13 @@ namespace cirno
         // 按照下标取得值, [0] = x, [1] = y
         float32& operator[](unsigned int i) noexcept
         {
-            assert(i >= 0 && i < 2);
+            assert(i < 2);
             return buff[i];
         }
         // 按照下标取得值, [0] = x, [1] = y
         float32 operator[](unsigned int i) const noexcept
         {
-            assert(i >= 0 && i < 2);
+            assert(i < 2);
             return buff[i];
         }
         // 取得X值

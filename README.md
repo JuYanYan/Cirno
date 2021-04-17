@@ -1,6 +1,6 @@
 # Cirno
 
-![Language](https://img.shields.io/badge/language-C%2B%2B-green)
+![Platform](https://img.shields.io/badge/Platform-Any-blue)![Language](https://img.shields.io/badge/Language-C%2B%2B-green)![License](https://img.shields.io/badge/License-MIT-green)![Document](https://img.shields.io/badge/Document-Writing-orange)![CodeQuality](https://img.shields.io/lgtm/grade/cpp/github/JuYanYan/Cirno.svg?logo=lgtm&logoWidth=24)
 
 &emsp;&emsp;⑨味十足的C++数学库，包括向量、四元数和4x4方阵。
 
@@ -37,4 +37,3 @@ int main()
 ```bash
 make
 ```
- 
