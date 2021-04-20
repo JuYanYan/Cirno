@@ -261,7 +261,7 @@ namespace cirno
             return buff;
         }
         // 取得更紧凑的空间向量
-        inline CompactVector3 CompactVector() const noexcept
+        inline operator CompactVector3() const noexcept
         {
             return CompactVector3{ x, y, z };
         }

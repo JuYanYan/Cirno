@@ -222,11 +222,11 @@ union
 
 ##### Vector2::Vector2(float32  \_v)
 
-![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\_v,%20\_v\right))
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\\\_v,%20\\\_v\right))
 
 ##### Vector2::Vector2(float32 \_x, float32 \_y)
 
-![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\_x,%20\_y\right))
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\\\_x,%20\\\_y\right))
 
 ##### Vector2::Vector2(const CompactVector2 &vec2)
 
@@ -234,9 +234,7 @@ union
 
 ##### Vector2::GetNormL2Square()
 
-&emsp;&emsp;该方法计算如下式子：
-
-![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert%20x%20\Vert ^2)
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert%20x%20\Vert%20^2)
 
 ##### Vector2::GetNormL2()
 
@@ -245,23 +243,23 @@ union
 
 ##### Vector2::Length()
 
-&emsp;&emsp;该方法与Vector2::GetNormL2()功能相同。
+该方法与Vector2::GetNormL2()功能相同。
 
 ##### Vector2::SetNormalize()
 
-&emsp;&emsp;该方法对\*this执行归一化，即：
+该方法对\*this执行归一化，即：
 
 ![](http://latex.codecogs.com/svg.latex?\vec{x}=\frac{1}{\Vert%20x%20\Vert}%20\cdot%20\vec{x})
 
 ##### Vector2::GetNormalize()
 
-&emsp;&emsp;该方法返回\*this的归一化结果，即：
+该方法返回\*this的归一化结果，即：
 
 ![](http://latex.codecogs.com/svg.latex?\text{ret}=\frac{1}{\Vert%20x\Vert}\cdot\vec{x})
 
 ##### Vector2::DotMul(const Vector2 b)
 
-&emsp;&emsp;该方法返回\*this与向量b的点乘结果，即：
+该方法返回\*this与向量b的点乘结果，即：
 
 ![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}\cdot\vec{b})
 
@@ -269,7 +267,7 @@ union
 
 ![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x}+\vec{b})
 
-##### Vector2::operator+(const Vector2 b) const
+##### Vector2::operator+(const Vector2 b)
 
 ![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}+\vec{b})
 
@@ -277,19 +275,19 @@ union
 
 ![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x}-\vec{b})
 
-##### Vector2::operator-(const Vector2 b) const
+##### Vector2::operator-(const Vector2 b)
 
 ![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}-\vec{b})
 
 ##### Vector2::operator\*=(const float32 v)
 
-&emsp;&emsp;该方法计算v与\*this的数乘，并赋值给\*this：
+该方法计算v与\*this的数乘，并赋值给\*this：
 
 ![](http://latex.codecogs.com/svg.latex?\vec{x}=v\cdot\vec{x})
 
 ##### operator\*(const Vector2 vec, const float32 v)
 
-&emsp;&emsp;该方法返回v与\*this的数乘：
+该方法返回v与\*this的数乘：
 
 ![](http://latex.codecogs.com/svg.latex?\vec{x}=v\cdot\vec{x})
 
@@ -299,14 +297,14 @@ union
 
 ##### Vector2::operator\[\](unsigned int i)
 
-&emsp;&emsp;该重载函数返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))的元素，下标与元素的关系如下：
+该重载函数返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))的元素，下标与元素的关系如下：
 
 | 下标i | 元素 |
 | ----- | ---- |
 | 0     | x    |
 | 1     | y    |
 
-&emsp;&emsp;超过允许返回的下标不被允许：
+超过允许返回的下标不被允许：
 
 ```c++
 assert(i < 2);
@@ -314,21 +312,21 @@ assert(i < 2);
 
 ##### Vector2::X()
 
-&emsp;&emsp;该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))的元素x的值。
+该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))的元素x的值。
 
 ##### Vector2::Y()
 
-&emsp;&emsp;该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))的元素y的值。
+该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))的元素y的值。
 
 ##### Vector2::GetPtr()
 
-&emsp;&emsp;该方法返回一个指针，与向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))使用共同的内存区域。
+该方法返回一个指针，与向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))使用共同的内存区域。
 
-&emsp;&emsp;外部访问应该限定在两个元素，避免出现内存问题。
+外部访问应该限定在两个元素，避免出现内存问题。
 
 ##### Vector2::operator CompactVector2()
 
-&emsp;&emsp;该方法返回一个更紧凑的结构CompactVector2，表示相同的向量。
+该方法返回一个更紧凑的结构CompactVector2，表示相同的向量。
 
 ## vector3.hpp
 
@@ -343,6 +341,172 @@ namespace cirno
 }
 ```
 
+### struct CompactVector3
+
+#### 成员
+
+```c++
+struct CompactVector3
+{
+    float32 x, y, z;
+};
+```
+
+### class Vector3
+
+&emsp;&emsp;该类提供平面向量封装，这个类不可继承。请注意，这个类不保证sizeof(\*this) == sizeof(float32) \* 3。
+
+#### 类成员
+
+##### 类成员声明
+
+&emsp;&emsp;声明表示向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z\right))
+
+```c++
+union
+{
+    struct
+    {
+        float32 x, y, z;
+    };
+    float32 buff[4];
+    #if defined(_MATHLIB_USE_SSE)
+        __m128 val;
+    #endif // _MATHLIB_USE_SSE
+};
+```
+
+##### 内存布局
+
+![Memory layout](images/vector3_memorylayout.png)
+
+#### 成员函数
+
+&emsp;&emsp;若无特殊说明，我们默认\*this的变量名是![](http://latex.codecogs.com/svg.latex?x)，返回值为![](http://latex.codecogs.com/svg.latex?ret)，且方法不抛出任何异常。
+
+&emsp;&emsp;另外，通常情况下GetXXX与SetXXX是一致的，区别在于Set开头的方法修改自身，Get开头的方法不修改自身。
+
+##### Vector3::Vector3()
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{0})
+
+##### Vector3::Vector3(float32 \_v)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\\\_v,%20\\\_v,%20\\\_v\right))
+
+##### Vector3::Vector3(float32 \_x, float32 \_y, float32 \_z)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\\\_x,%20\\\_y,%20\\\_z\right))
+
+##### Vector3::Vector3(const CompactVector3 &vec3)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(vec3.x,%20vec3.y,%20vec3.z\right))
+
+##### Vector3::GetNormL2Square()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert%20x%20\Vert%20^2)
+
+##### Vector3::GetNormL2()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert%20x%20\Vert)
+
+##### Vector3::Length()
+
+该方法与Vector3::GetNormL2()功能相同。
+
+##### Vector3::SetNormalize()
+
+该方法对\*this执行归一化，即：
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\frac{1}{\Vert%20x%20\Vert}%20\cdot%20\vec{x})
+
+##### Vector3::GetNormalize()
+
+该方法返回归一化结果，即：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\frac{1}{\Vert%20x\Vert}\cdot\vec{x})
+
+##### Vector3::DotMul(const Vector3 b)
+
+该方法返回\*this与向量b的点乘结果，即：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}\cdot\vec{b})
+
+##### Vector3::CrossMul(const Vector3 b)
+
+该方法返回\*this与向量b的叉乘结果，即：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}\times\vec{b})
+
+##### Vector3::operator+=(const Vector3 b)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x}+\vec{b})
+
+##### Vector3::operator+(const Vector3 b)
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}+\vec{b})
+
+##### Vector3::operator-=(const Vector3 b)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x}-\vec{b})
+
+##### Vector3::operator-(const Vector3 b)
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}-\vec{b})
+
+##### Vector3::operator\*=(const float32 v)
+
+返回\*this与数值v的数乘，并将\*this修改为该结果：
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=v\cdot\vec{x})
+
+##### operator\*(const Vector3 vec, const float32 v)
+
+返回\*this与数值v的数乘：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{b}\cdot\vec{x})
+
+##### Vector3::operator-()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=-\vec{b})
+
+##### Vector3::operator\[\](unsigned int i)
+
+该重载函数返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z\right))的元素，下标与元素的关系如下：
+
+| 下标i | 元素 |
+| ----- | ---- |
+| 0     | x    |
+| 1     | y    |
+| 2     | z    |
+
+超过允许返回的下标不被允许：
+
+```c++
+assert(i < 3);
+```
+
+##### Vector3::X()
+
+返回元素x。
+
+##### Vector3::Y()
+
+返回元素y。
+
+##### Vector3::Z()
+
+返回元素z。
+
+##### Vector3::GetPtr()
+
+该方法返回一个指针，与向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z\right))使用共同的内存区域。
+
+外部访问应该限定在两个元素，避免出现内存问题。
+
+##### Vector3::operator CompactVector3()
+
+该方法返回一个更紧凑的结构CompactVector3，表示相同的向量。
 
 ## vector4.hpp
 
