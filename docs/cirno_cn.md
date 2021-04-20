@@ -40,7 +40,7 @@ void do_something()
 
 ### 预处理宏
 
-#### _MATHLIB_USE_SSE
+#### \_MATHLIB\_USE\_SSE
 
 &emsp;&emsp;该宏指定打开SSE指令集：
 
@@ -502,7 +502,7 @@ assert(i < 3);
 
 该方法返回一个指针，与向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z\right))使用共同的内存区域。
 
-外部访问应该限定在两个元素，避免出现内存问题。
+外部访问应该限定在3个元素，避免出现内存问题。
 
 ##### Vector3::operator CompactVector3()
 
@@ -520,7 +520,157 @@ namespace cirno
    // here
 }
 ```
+### class Vector4
 
+&emsp;&emsp;该类提供四维向量封装，这个类可以继承。请注意，这个类**需要**保证sizeof(\*this) == sizeof(float32) \* 4。
+
+#### 类成员
+
+##### 类成员声明
+
+&emsp;&emsp;声明表示向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))
+
+```c++
+union
+{
+    struct
+    {
+        float32 x, y, z, w;
+    };
+    struct
+    {
+        float32 a, b, c, d;
+    };
+    float32 buff[4];
+    #if defined(_MATHLIB_USE_SSE)
+        __m128 val;
+    #endif // _MATHLIB_USE_SSE
+};
+```
+
+##### 内存布局
+
+![Memory layout](images/vector4_memorylayout.png)
+
+#### 成员函数
+
+&emsp;&emsp;若无特殊说明，我们默认\*this的变量名是![](http://latex.codecogs.com/svg.latex?x)，返回值为![](http://latex.codecogs.com/svg.latex?ret)，且方法不抛出任何异常。
+
+&emsp;&emsp;另外，通常情况下GetXXX与SetXXX是一致的，区别在于Set开头的方法修改自身，Get开头的方法不修改自身。
+
+##### Vector4::Vector4()
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{0})
+
+##### Vector4::Vector4(float32  \_v)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\\\_v,%20\\\_v,%20\\\_v,%20\\\_v\right))
+
+##### Vector4::Vector4(float32 \_x, float32 \_y, float32 \_z, float32 \_w)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\\\_x,%20\\\_y,%20\\\_z,%20\\\_w\right))
+
+##### Vector4::GetNormL2Square()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert%20x%20\Vert%20^2)
+
+##### Vector4::GetNormL2()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert%20x%20\Vert)
+
+
+##### Vector4::Length()
+
+该方法与Vector4::GetNormL2()功能相同。
+
+##### Vector4::SetNormalize()
+
+该方法对\*this执行归一化，即：
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\frac{1}{\Vert%20x%20\Vert}%20\cdot%20\vec{x})
+
+##### Vector4::GetNormalize()
+
+该方法返回\*this的归一化结果，即：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\frac{1}{\Vert%20x\Vert}\cdot\vec{x})
+
+##### Vector4::DotMul(const Vector4 b)
+
+该方法返回\*this与向量b的点乘结果，即：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}\cdot\vec{b})
+
+##### Vector4::operator+=(const Vector4 b)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x}+\vec{b})
+
+##### Vector4::operator+(const Vector4 b)
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}+\vec{b})
+
+##### Vector4::operator-=(const Vector4 b)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x}-\vec{b})
+
+##### Vector4::operator-(const Vector4 b)
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}-\vec{b})
+
+##### Vector4::operator\*=(const float32 v)
+
+该方法计算v与\*this的数乘，并赋值给\*this：
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=v\cdot\vec{x})
+
+##### operator\*(const Vector4 vec, const float32 v)
+
+该方法返回v与\*this的数乘：
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=v\cdot\vec{x})
+
+##### Vector4::operator-()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=-\vec{x})
+
+##### Vector4::operator\[\](unsigned int i)
+
+该重载函数返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z,%20w\right))的元素，下标与元素的关系如下：
+
+| 下标i | 元素 |
+| ----- | ---- |
+| 0     | x    |
+| 1     | y    |
+| 2     | z    |
+| 3     | w    |
+
+超过允许返回的下标不被允许：
+
+```c++
+assert(i < 4);
+```
+
+##### Vector4::X()
+
+该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z,%20w\right))的元素x的值。
+
+##### Vector4::Y()
+
+该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z,%20w\right))的元素y的值。
+
+##### Vector4::Z()
+
+该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z,%20w\right))的元素z的值。
+
+##### Vector4::W()
+
+该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z,%20w\right))的元素w的值。
+
+##### Vector4::GetPtr()
+
+该方法返回一个指针，与向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y,%20z,%20w\right))使用共同的内存区域。
+
+外部访问应该限定在4个元素，避免出现内存问题。
 
 ## quater.hpp
 

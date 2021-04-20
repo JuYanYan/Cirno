@@ -1,6 +1,6 @@
 # Cirno
 
-![Platform](https://img.shields.io/badge/Platform-Any-blue)&nbsp;![Language](https://img.shields.io/badge/Language-C%2B%2B-green)&nbsp;![License](https://img.shields.io/badge/License-MIT-green)&nbsp;![Document](https://img.shields.io/badge/Document-50%-orange)&nbsp;![CodeQuality](https://img.shields.io/lgtm/grade/cpp/github/JuYanYan/Cirno.svg?logo=lgtm&logoWidth=24)
+![Platform](https://img.shields.io/badge/Platform-Any-blue)&nbsp;![Language](https://img.shields.io/badge/Language-C%2B%2B-green)&nbsp;![License](https://img.shields.io/badge/License-MIT-green)&nbsp;![Document](https://img.shields.io/badge/Document-50%25-orange)&nbsp;![CodeQuality](https://img.shields.io/lgtm/grade/cpp/github/JuYanYan/Cirno.svg?logo=lgtm&logoWidth=24)
 
 &emsp;&emsp;⑨味十足的C++数学库，包括向量、四元数和4x4方阵。
 

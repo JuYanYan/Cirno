@@ -182,7 +182,7 @@ namespace cirno
         #endif // _MATHLIB_USE_SSE
             return *this;
         }
-        // 空间向量数乘
+        // 四维向量数乘
         friend MATHLIB_CALL(Vector4) operator*(const Vector4 vec, const float32 v) noexcept
         {
         #if defined(_MATHLIB_USE_SSE)
@@ -239,11 +239,6 @@ namespace cirno
         inline const float32* GetPtr() const noexcept
         {
             return buff;
-        }
-        // 取得更紧凑的四维向量
-        inline CompactVector4 CompactVector() const noexcept
-        {
-            return CompactVector4{ x, y, z, w };
         }
     protected:
         // 内存布局:
