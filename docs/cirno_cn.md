@@ -70,7 +70,7 @@ namespace cirno
 
 <img src="images/rect.png" alt="RectF" style="zoom:50%;" />
 
-&emsp;&emsp;通常情况下，我们默认![](http://latex.codecogs.com/svg.latex?left\leq right)：而且![](http://latex.codecogs.com/svg.latex?top\leq bottom)。
+&emsp;&emsp;通常情况下，我们默认![](http://latex.codecogs.com/svg.latex?left\leq%20right)：而且![](http://latex.codecogs.com/svg.latex?top\leq%20bottom)。
 
 #### 成员
 
@@ -113,7 +113,7 @@ struct RectF
 
 <img src="images/rect.png" alt="RectF" style="zoom:50%;" />
 
-&emsp;&emsp;通常情况下，我们默认![](http://latex.codecogs.com/svg.latex?left\leq right)：而且![](http://latex.codecogs.com/svg.latex?top\leq bottom)。
+&emsp;&emsp;通常情况下，我们默认![](http://latex.codecogs.com/svg.latex?left\leq%20right)：而且![](http://latex.codecogs.com/svg.latex?top\leq%20bottom)。
 
 #### 成员
 
@@ -190,7 +190,7 @@ struct CompactVector2
 
 ##### 类成员声明
 
-&emsp;&emsp;声明表示向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))
+&emsp;&emsp;声明表示向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))
 
 ```c++
 union
@@ -222,25 +222,25 @@ union
 
 ##### Vector2::Vector2(float32  \_v)
 
-![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\_ v, \_ v\right))
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\_v,%20\_v\right))
 
 ##### Vector2::Vector2(float32 \_x, float32 \_y)
 
-![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\_ x, \_ y\right))
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\_x,%20\_y\right))
 
 ##### Vector2::Vector2(const CompactVector2 &vec2)
 
-![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(vec2.x, vec2.y\right))
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(vec2.x,%20vec2.y\right))
 
 ##### Vector2::GetNormL2Square()
 
 &emsp;&emsp;该方法计算如下式子：
 
-![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert x \Vert ^2)
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert%20x%20\Vert ^2)
 
 ##### Vector2::GetNormL2()
 
-![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert x \Vert)
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert%20x%20\Vert)
 
 
 ##### Vector2::Length()
@@ -251,35 +251,35 @@ union
 
 &emsp;&emsp;该方法对\*this执行归一化，即：
 
-![](http://latex.codecogs.com/svg.latex?\vec{x}=\frac{1}{\Vert x \Vert} \cdot \vec{x})
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\frac{1}{\Vert%20x%20\Vert}%20\cdot%20\vec{x})
 
 ##### Vector2::GetNormalize()
 
 &emsp;&emsp;该方法返回\*this的归一化结果，即：
 
-![](http://latex.codecogs.com/svg.latex?\text{ret}=\frac{1}{\Vert x \Vert} \cdot \vec{x})
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\frac{1}{\Vert%20x\Vert}\cdot\vec{x})
 
 ##### Vector2::DotMul(const Vector2 b)
 
 &emsp;&emsp;该方法返回\*this与向量b的点乘结果，即：
 
-![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x} \cdot \vec{b})
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}\cdot\vec{b})
 
 ##### Vector2::operator+=(const Vector2 b)
 
-![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x} + \vec{b})
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x}+\vec{b})
 
 ##### Vector2::operator+(const Vector2 b) const
 
-![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x} + \vec{b})
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}+\vec{b})
 
 ##### Vector2::operator-=(const Vector2 b)
 
-![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x} - \vec{b})
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x}-\vec{b})
 
 ##### Vector2::operator-(const Vector2 b) const
 
-![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x} - \vec{b})
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x}-\vec{b})
 
 ##### Vector2::operator\*=(const float32 v)
 
@@ -299,7 +299,7 @@ union
 
 ##### Vector2::operator\[\](unsigned int i)
 
-&emsp;&emsp;该重载函数返回向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))的元素，下标与元素的关系如下：
+&emsp;&emsp;该重载函数返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))的元素，下标与元素的关系如下：
 
 | 下标i | 元素 |
 | ----- | ---- |
@@ -314,15 +314,15 @@ assert(i < 2);
 
 ##### Vector2::X()
 
-&emsp;&emsp;该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))的元素x的值。
+&emsp;&emsp;该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))的元素x的值。
 
 ##### Vector2::Y()
 
-&emsp;&emsp;该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))的元素y的值。
+&emsp;&emsp;该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))的元素y的值。
 
 ##### Vector2::GetPtr()
 
-&emsp;&emsp;该方法返回一个指针，与向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))使用共同的内存区域。
+&emsp;&emsp;该方法返回一个指针，与向量![](http://latex.codecogs.com/svg.latex?\left(x,%20y\right))使用共同的内存区域。
 
 &emsp;&emsp;外部访问应该限定在两个元素，避免出现内存问题。
 
