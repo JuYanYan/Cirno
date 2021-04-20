@@ -98,12 +98,12 @@ struct RectF
 
 &emsp;&emsp;参数：
 
-| 参数类型 | 参数名称       | 说明             |
-| -------- | -------------- | ---------------- |
-| float32  | l              | 指定矩形的left   |
-| float32  | r              | 指定矩形的right  |
-| float32  | t指定矩形的top | 指定矩形的top    |
-| float32  | b              | 指定矩形的bottom |
+| 参数类型 | 参数名称 | 说明             |
+| -------- | -------- | ---------------- |
+| float32  | l        | 指定矩形的left   |
+| float32  | r        | 指定矩形的right  |
+| float32  | t        | 指定矩形的top    |
+| float32  | b        | 指定矩形的bottom |
 
 &emsp;&emsp;异常：无。
 
@@ -141,12 +141,12 @@ struct RectI32
 
 &emsp;&emsp;参数：
 
-| 参数类型 | 参数名称       | 说明             |
-| -------- | -------------- | ---------------- |
-| int32_t  | l              | 指定矩形的left   |
-| int32_t  | r              | 指定矩形的right  |
-| int32_t  | t指定矩形的top | 指定矩形的top    |
-| int32_t  | b              | 指定矩形的bottom |
+| 参数类型 | 参数名称 | 说明             |
+| -------- | -------- | ---------------- |
+| int32_t  | l        | 指定矩形的left   |
+| int32_t  | r        | 指定矩形的right  |
+| int32_t  | t        | 指定矩形的top    |
+| int32_t  | b        | 指定矩形的bottom |
 
 &emsp;&emsp;异常：无。
 
@@ -171,6 +171,164 @@ namespace cirno
 }
 ```
 
+### struct CompactVector2
+
+#### 成员
+
+```c++
+struct CompactVector2
+{
+    float32 x, y;
+};
+```
+
+### class Vector2
+
+&emsp;&emsp;该类提供平面向量封装，这个类不可继承。请注意，这个类不保证sizeof(\*this) == sizeof(float32) \* 2。
+
+#### 类成员
+
+##### 类成员声明
+
+&emsp;&emsp;声明表示向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))
+
+```c++
+union
+{
+    struct
+    {
+        float32 x, y;
+    };
+    float32 buff[4];
+    #if defined(_MATHLIB_USE_SSE)
+        __m128 val;
+    #endif // _MATHLIB_USE_SSE
+};
+```
+
+##### 内存布局
+
+![Memory layout](images/vector2_memorylayout.png)
+
+#### 成员函数
+
+&emsp;&emsp;若无特殊说明，我们默认\*this的变量名是![](http://latex.codecogs.com/svg.latex?x)，返回值为![](http://latex.codecogs.com/svg.latex?ret)，且方法不抛出任何异常。
+
+&emsp;&emsp;另外，通常情况下GetXXX与SetXXX是一致的，区别在于Set开头的方法修改自身，Get开头的方法不修改自身。
+
+##### Vector2::Vector2()
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{0})
+
+##### Vector2::Vector2(float32  \_v)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\_ v, \_ v\right))
+
+##### Vector2::Vector2(float32 \_x, float32 \_y)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(\_ x, \_ y\right))
+
+##### Vector2::Vector2(const CompactVector2 &vec2)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\left(vec2.x, vec2.y\right))
+
+##### Vector2::GetNormL2Square()
+
+&emsp;&emsp;该方法计算如下式子：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert x \Vert ^2)
+
+##### Vector2::GetNormL2()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\Vert x \Vert)
+
+
+##### Vector2::Length()
+
+&emsp;&emsp;该方法与Vector2::GetNormL2()功能相同。
+
+##### Vector2::SetNormalize()
+
+&emsp;&emsp;该方法对\*this执行归一化，即：
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\frac{1}{\Vert x \Vert} \cdot \vec{x})
+
+##### Vector2::GetNormalize()
+
+&emsp;&emsp;该方法返回\*this的归一化结果，即：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\frac{1}{\Vert x \Vert} \cdot \vec{x})
+
+##### Vector2::DotMul(const Vector2 b)
+
+&emsp;&emsp;该方法返回\*this与向量b的点乘结果，即：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x} \cdot \vec{b})
+
+##### Vector2::operator+=(const Vector2 b)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x} + \vec{b})
+
+##### Vector2::operator+(const Vector2 b) const
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x} + \vec{b})
+
+##### Vector2::operator-=(const Vector2 b)
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=\vec{x} - \vec{b})
+
+##### Vector2::operator-(const Vector2 b) const
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\vec{x} - \vec{b})
+
+##### Vector2::operator\*=(const float32 v)
+
+&emsp;&emsp;该方法计算v与\*this的数乘，并赋值给\*this：
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=v\cdot\vec{x})
+
+##### operator\*(const Vector2 vec, const float32 v)
+
+&emsp;&emsp;该方法返回v与\*this的数乘：
+
+![](http://latex.codecogs.com/svg.latex?\vec{x}=v\cdot\vec{x})
+
+##### Vector2::operator-()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=-\vec{x})
+
+##### Vector2::operator\[\](unsigned int i)
+
+&emsp;&emsp;该重载函数返回向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))的元素，下标与元素的关系如下：
+
+| 下标i | 元素 |
+| ----- | ---- |
+| 0     | x    |
+| 1     | y    |
+
+&emsp;&emsp;超过允许返回的下标不被允许：
+
+```c++
+assert(i < 2);
+```
+
+##### Vector2::X()
+
+&emsp;&emsp;该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))的元素x的值。
+
+##### Vector2::Y()
+
+&emsp;&emsp;该方法返回向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))的元素y的值。
+
+##### Vector2::GetPtr()
+
+&emsp;&emsp;该方法返回一个指针，与向量![](http://latex.codecogs.com/svg.latex?\left(x, y\right))使用共同的内存区域。
+
+&emsp;&emsp;外部访问应该限定在两个元素，避免出现内存问题。
+
+##### Vector2::operator CompactVector2()
+
+&emsp;&emsp;该方法返回一个更紧凑的结构CompactVector2，表示相同的向量。
 
 ## vector3.hpp
 

@@ -3,7 +3,7 @@
  | 文件名称: vector2.hpp
  | 文件作用: 平面向量
  | 创建日期: 2021-03-14
- | 更新日期: 2021-03-25
+ | 更新日期: 2021-04-20
  | 开发人员: JuYan
  +----------------------------
  Copyright (C) JuYan, all rights reserved.
@@ -222,10 +222,11 @@ namespace cirno
             return buff;
         }
         // 取得更紧凑的平面向量
-        inline CompactVector2 CompactVector() const noexcept
+        inline operator CompactVector2() const noexcept
         {
             return CompactVector2{ x, y };
         }
+        // 转换为一个更君
     protected:
         // 内存布局:
         // union
