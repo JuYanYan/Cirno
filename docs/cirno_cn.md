@@ -685,6 +685,139 @@ namespace cirno
 }
 ```
 
+### class Quaternion
+
+&emsp;&emsp;该类继承自Vector4类，与Vector4类拥有共同的内存布局，表示四元数![](http://latex.codecogs.com/svg.latex?z=a+bi+cj+dk)，其中，![](http://latex.codecogs.com/svg.latex?i^2+j^2+k^2=-1)。
+
+&emsp;&emsp;如下内容如不做说明，默认函数不抛出异常，返回值为![](http://latex.codecogs.com/svg.latex?\text{ret})，\*this为![](http://latex.codecogs.com/svg.latex?z)。
+
+#### 类型
+
+##### ImaginaryNum
+
+表示一个四元数的虚数部分，类型与Vector3一致：
+
+```c++
+using ImaginaryNum = Vector3;
+```
+
+#### 成员函数
+
+##### Quaternion::Quaternion()
+
+默认构造函数，初始化\*this为一个虚部全为零，实部为1的四元数，即![](http://latex.codecogs.com/svg.latex?z=\left(1,0,0,0\right))。
+
+##### Quaternion::Quaternion(const Vector3 imag)
+
+![](http://latex.codecogs.com/svg.latex?z=\left(0,imag.x,imag.y,imag.z\right))。
+
+##### Quaternion::Quaternion(const float32 angle, const Vector3 axis)
+
+构造一个四元数，表示围绕旋转轴![](http://latex.codecogs.com/svg.latex?axis)旋转![](http://latex.codecogs.com/svg.latex?angle)度（弧度），更多信息参阅Quaternion::SetByRotateAxis。
+
+##### Quaternion::Quaternion(const float32 pitch, const float32 yaw, const float32 roll)
+
+构造一个四元数，表示一个欧拉角的旋转。更多信息参阅Quaternion::SetByEulerAngle。
+
+##### Quaternion::Quaternion(float32 \_a, float32 \_b, float32 \_c, float32 \_d)
+
+![](http://latex.codecogs.com/svg.latex?z=\left(\\\_a,\\\_b,\\\_c,\\\_d\right))。
+
+##### Quaternion::SetByEulerAngle(float32 pitch, float32 yaw, float32 roll)
+
+表示从欧拉角设置一个四元数。该函数实现上假定有一个右手直角坐标系，按照如下顺序进行旋转，得到最终结果：
+
+![](images/euler_angle.png)
+
+##### static Quaternion::EulerAngle(float32 pitch, float32 yaw, float32 roll)
+
+返回一个四元数，从欧拉角构建。实现同Quaternion::SetByEulerAngle。
+
+##### Quaternion::SetByRotateAxis(const float32 angle, const Vector3 \_axis)
+
+表示设置一个绕\_axis轴旋转angle度（弧度）的四元数，如下图：
+
+![](images/axis_rotate.png)
+
+##### static Quaternion::RotateAxis(const float32 angle, const Vector3 _axis)
+
+返回一个四元数，表示绕轴旋转。实现同Quaternion::SetRotateAxis。
+
+##### Quaternion::GetImaginaryPart()
+
+取得四元数的虚数部分：
+
+![](http://latex.codecogs.com/svg.latex?\left[\_,\text{ret}\right]=\left(z.a,imag\left(z.b,z.c,z.d\right%29\right))。
+
+##### Quaternion::SetConjugate()
+
+![](http://latex.codecogs.com/svg.latex?z=\bar%20z)
+
+##### Quaternion::GetConjugate()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=\bar%20z)
+
+##### Quaternion::SetInverse()
+
+![](http://latex.codecogs.com/svg.latex?z=z^{-1})
+
+##### Quaternion::GetInverse()
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=z^{-1})
+
+##### Quaternion::operator+=(const Quaternion b)
+
+![](http://latex.codecogs.com/svg.latex?z=z+b)
+
+##### Quaternion::operator+(const Quaternion b)
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=z+b)
+
+##### Quaternion::operator-=(const Quaternion b)
+
+![](http://latex.codecogs.com/svg.latex?z=z-b)
+
+##### Quaternion::operator-(const Quaternion b)
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=z-b)
+
+##### Quaternion::operator\*=(const float32 v)
+
+计算\*this与数值v的数乘，并赋值给\*this：
+
+![](http://latex.codecogs.com/svg.latex?z=v\cdot%20z)
+
+##### Quaternion::operator\*(const Quaternion vec, const float32 v)hh
+
+返回\*this与数值v的数乘：
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=v\cdot%20z)
+
+##### Quaternion::operator\*(const Quaternion b) 
+
+![](http://latex.codecogs.com/svg.latex?\text{ret}=zb)
+
+##### Quaternion::operator\*=(const Quaternion b)
+
+![](http://latex.codecogs.com/svg.latex?z=zb)
+
+##### Quaternion::operator\[\](unsigned int i)
+
+该重载函数返回四元数![](http://latex.codecogs.com/svg.latex?a+bi+cj+dk)的元素，下标与元素的关系如下：
+
+| 下标i | 元素 |
+| ----- | ---- |
+| 0     | a    |
+| 1     | b    |
+| 2     | c    |
+| 3     | d    |
+
+超过允许返回的下标不被允许：
+
+```c++
+assert(i < 4);
+```
+
 
 ## matrix4.hpp
 
